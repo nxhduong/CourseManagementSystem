@@ -3,26 +3,41 @@
 <PageTitle>UNI - CMS - Home</PageTitle>
 
 <body>
-    <div class="card mb-3">
-        <div class="card-body">
-            <h3 class="card-title"><span class="fw-bold">Name</span>/Staff</h3>
-            <h5 class="card-subtitle text-muted">ID - Class</h5>
+    @if (User is not null)
+    {
+        var title = User.IsStaff ? "/Staff" : "Student";
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title"><span class="fw-bold">@User.Username</span>@title</h3>
+                <h5 class="card-subtitle text-muted">ID - Class</h5>
+            </div>
         </div>
-    </div>
-    <form>
-        <div class="mb-3">
-            Change password:
-        </div>
-        <div class="mb-3 form-floating">
-            <input type="password" class="form-control" id="oldPassword" placeholder="Old password" required />
-            <label for="oldPassword">Old password</label>
-        </div>
-        <div class="mb-3 form-floating">
-            <input type="password" class="form-control" id="newPassword" placeholder="New password" required />
-            <label for="newPassword">New password</label>
-        </div>
-        <div class="mb-3">
-            <input type="submit" class="btn btn-primary" />
-        </div>
-    </form>
+        <form>
+            <div class="mb-3">
+                Change password:
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="password" class="form-control" id="oldPassword" placeholder="Old password" required />
+                <label for="oldPassword">Old password</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="password" class="form-control" id="newPassword" placeholder="New password" required />
+                <label for="newPassword">New password</label>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    } 
+    else 
+    {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">Welcome to UNI - Course Management System</h3>
+                    <hr />
+                    <h5 class="card-subtitle">Please sign in to continue</h5>
+                </div>
+            </div>
+    }
 </body>

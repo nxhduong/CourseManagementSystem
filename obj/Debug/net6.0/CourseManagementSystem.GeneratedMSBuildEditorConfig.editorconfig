@@ -9,53 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CourseManagementSystem
 build_property.RootNamespace = CourseManagementSystem
-build_property.ProjectDir = C:\Users\ADMIN\source\repos\CourseManagementSystem\
+build_property.ProjectDir = C:\Users\ADMIN\Desktop\CourseManagementSystem\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ADMIN\source\repos\CourseManagementSystem
+build_property.MSBuildProjectDirectory = C:\Users\ADMIN\Desktop\CourseManagementSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/App.razor]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/HomePage.razor]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/HomePage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Shared/SurveyPrompt.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/LoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/_Imports.razor]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Shared/MainLayout.razor]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-0byc9wpul3
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Shared/NavMenu.razor]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-ekhzjx919j
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/Error.cshtml]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/_Host.cshtml]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/source/repos/CourseManagementSystem/Pages/_Layout.cshtml]
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

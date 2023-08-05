@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\source\\repos\\CourseManagementSystem\\CourseManagementSystem.csproj": {}
+    "C:\\Users\\ADMIN\\Desktop\\CourseManagementSystem\\CourseManagementSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\source\\repos\\CourseManagementSystem\\CourseManagementSystem.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\CourseManagementSystem\\CourseManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\source\\repos\\CourseManagementSystem\\CourseManagementSystem.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\CourseManagementSystem\\CourseManagementSystem.csproj",
         "projectName": "CourseManagementSystem",
-        "projectPath": "C:\\Users\\ADMIN\\source\\repos\\CourseManagementSystem\\CourseManagementSystem.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\CourseManagementSystem\\CourseManagementSystem.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\source\\repos\\CourseManagementSystem\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\CourseManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,42 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
