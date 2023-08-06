@@ -11,9 +11,9 @@
 
     <main>
         <div class="top-row px-4">
-            @if (currentSchoolYearAndSemester != null)
+            @if (_currentSchoolYearAndSemester != null)
             {
-                @currentSchoolYearAndSemester
+                @_currentSchoolYearAndSemester
             }
             <LoginDisplay />
         </div>
@@ -23,22 +23,3 @@
         </article>
     </main>
 </div>
-
-@code {
-    private string? currentSchoolYearAndSemester;
-    private PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromMinutes(1));
-
-    protected override async Task OnInitializedAsync()
-    {
-        StartClock();
-    }
-
-    protected async Task StartClock()
-    {
-        while (await timer.WaitForNextTickAsync())
-        {
-            currentSchoolYearAndSemester = await SchoolTime.GetCurrentSemester(DateTime.Now);
-            await InvokeAsync(() => StateHasChanged());
-        }
-    }
-}

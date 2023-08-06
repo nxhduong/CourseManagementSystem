@@ -1,26 +1,26 @@
-﻿@page "/login"
+﻿@page "/Login"
 
 <PageTitle>UNI - CMS - Sign in</PageTitle>
 
 <body>
-    <EditForm Model="@User" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@_user" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
         <p>
             <label>
                 Username:
-                <InputText @bind-Value="User.Username"></InputText>
+                <InputText class="form-control" @bind-Value="_user.Username"></InputText>
             </label>
         </p>
         <p>
             <label>
                 Password:
-                <InputText @bind-Value="User.Password" typeof="password"></InputText>
+                <InputText class="form-control" @bind-Value="_user.Password" type="password"></InputText>
             </label>
         </p>
         <button type="submit" class="btn btn-primary">Log in</button>
         <ValidationSummary />
     </EditForm>
-    @if (WrongCredentials) {
-        <div class="alert alert-danger">Invalid username or password.</div>
+    @if (wrongCredentials) {
+        <div class="alert alert-danger mb-3">Invalid username or password.</div>
     }
 </body>

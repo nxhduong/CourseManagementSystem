@@ -37,19 +37,12 @@ C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.EntityF
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
@@ -91,8 +84,6 @@ C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Reflection
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Runtime.Caching.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Windows.Extensions.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\af\Humanizer.resources.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\ar\Humanizer.resources.dll
@@ -251,7 +242,6 @@ C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-mi
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-s390x\native\libe_sqlite3.so
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-x64\native\libe_sqlite3.so
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\linux-x86\native\libe_sqlite3.so
@@ -267,7 +257,6 @@ C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\unix\lib
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\CourseManagementSystem.csproj.AssemblyReference.cache
 C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\CourseManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
@@ -295,3 +284,4 @@ C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\refint\CourseMana
 C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\CourseManagementSystem.pdb
 C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\CourseManagementSystem.genruntimeconfig.cache
 C:\Users\ADMIN\Desktop\CourseManagementSystem\obj\Debug\net6.0\ref\CourseManagementSystem.dll
+C:\Users\ADMIN\Desktop\CourseManagementSystem\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll

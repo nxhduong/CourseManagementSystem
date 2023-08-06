@@ -7,8 +7,11 @@ namespace CourseManagementSystem.Models
         [Required]
         public string Username { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         public bool IsStaff { get; set; }
+        public string Class { get; set; } = "";
+        public string FullName { get; set; } = "";
     }
 }
