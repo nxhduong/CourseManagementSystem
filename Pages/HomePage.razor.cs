@@ -45,7 +45,7 @@ namespace CourseManagementSystem.Pages
 
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    ProtectedSessionStore.DeleteAsync("cms_access_token");
+                    await ProtectedSessionStore.DeleteAsync("cms_access_token");
                     Navigation.NavigateTo("/Login", true);
                 }
                 else

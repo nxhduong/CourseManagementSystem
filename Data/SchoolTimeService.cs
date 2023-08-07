@@ -18,14 +18,13 @@ namespace CourseManagementSystem.Data
                 using var reader = command.ExecuteReader();
 
                 DateTime startDate, endDate;
-                CultureInfo local = new("vi-VN");
 
                 while (reader.Read())
                 {
                     try
                     {
-                        startDate = DateTime.ParseExact(reader.GetString(2), "dd/MM/yyyy", local);
-                        endDate = DateTime.ParseExact(reader.GetString(3), "dd/MM/yyyy", local);
+                        startDate = DateTime.ParseExact(reader.GetString(2), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        endDate = DateTime.ParseExact(reader.GetString(3), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                         if (DateTime.Compare(today, startDate) >= 0 && DateTime.Compare(today, endDate) <= 0)
                         {

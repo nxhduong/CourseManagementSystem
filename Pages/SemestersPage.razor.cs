@@ -74,8 +74,8 @@ namespace CourseManagementSystem.Pages
             SelectedSemester.SemesterNumber = _semestersList[row][1];
             Semester.Year = _semestersList[row][0];
             Semester.SemesterNumber = _semestersList[row][1];
-            Semester.StartDate = DateTime.ParseExact(_semestersList[row][2], "dd/MM/yyyy", new CultureInfo(""));
-            Semester.EndDate = DateTime.ParseExact(_semestersList[row][3], "dd/MM/yyyy", new CultureInfo(""));
+            Semester.StartDate = DateTime.ParseExact(_semestersList[row][2], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            Semester.EndDate = DateTime.ParseExact(_semestersList[row][3], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             _newSemester = false;
             _isModifying = true;
         }
