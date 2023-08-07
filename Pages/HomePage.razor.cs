@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Data.Sqlite;
+using System.Text;
+using System.Text.RegularExpressions;
+using CourseManagementSystem.Data;
 
 namespace CourseManagementSystem.Pages
 {
@@ -9,8 +12,11 @@ namespace CourseManagementSystem.Pages
     {
         [Inject]
         private ProtectedSessionStorage ProtectedSessionStore { get; set; }
+        [Inject]
+        private NavigationManager? Navigation { get; set; }
         private UserModel? _user;
-        private PasswordChangeModel? _passwords = new();
+        private readonly PasswordChangeModel? _passwords = new();
+        private bool _invalidNewPassword = false;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -21,24 +27,36 @@ namespace CourseManagementSystem.Pages
 
         public async Task HandleValidSubmit()
         {
-            /* TODO
-            using (var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadWrite"))
+            if (_passwords.NewPassword.Length > 6 && Regex.IsMatch(_passwords.NewPassword, @"(\w*\d\w+)|(\w+\d\w*)"))
             {
+                _invalidNewPassword = false;
+
+                using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadWrite");
+
                 connection.Open();
 
                 var command = connection.CreateCommand();
-                var username = "";
-                var hashPass = "";
+                var newHashPass = Crypto.ByteArrayToString(Crypto.MD5Encryptor.ComputeHash(Encoding.ASCII.GetBytes(_passwords.OldPassword ?? ""))).ToUpper();
+                command.CommandText = _user.IsStaff ?
+                    "UPDATE Staff SET HashPass = $newhashpass WHERE HashPass = $oldhashpass" :
+                    "UPDATE Students SET HashPass = $newhashpass WHERE HashPass = $oldhashpass";
+                command.Parameters.AddWithValue("$oldhashpass", _passwords.NewPassword);
+                command.Parameters.AddWithValue("$newhashpass", newHashPass);
 
-                command.CommandText = "SELECT * FROM Staff WHERE Username = $username";
-                command.Parameters.AddWithValue("$username", _user.Username);
-
-                using (var reader = command.ExecuteReader())
+                if (command.ExecuteNonQuery() == 1)
                 {
-                    reader.Read();
-                    if (reader.GetString(0) != null) { }
+                    ProtectedSessionStore.DeleteAsync("cms_access_token");
+                    Navigation.NavigateTo("/Login", true);
                 }
-            }*/
+                else
+                {
+                    Console.Error.WriteLine("Error updating password");
+                }
+            }
+            else
+            {
+                _invalidNewPassword = true;
+            }
         }
     }
 }

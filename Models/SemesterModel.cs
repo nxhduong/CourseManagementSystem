@@ -3,6 +3,8 @@
     public class SemesterModel
     {
         public string Year { get; set; }
-        public int Semester { get; set; }
+        public string SemesterNumber { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

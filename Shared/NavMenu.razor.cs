@@ -10,7 +10,7 @@ namespace CourseManagementSystem.Shared
         private ProtectedSessionStorage ProtectedSessionStore { get; set; }
         private UserModel? _user = null;
         private bool _collapseNavMenu = true;
-        private string? _navMenuCssClass => _collapseNavMenu ? "collapse" : null;
+        private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
         private void ToggleNavMenu()
         {

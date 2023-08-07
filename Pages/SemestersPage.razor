@@ -1,0 +1,51 @@
+﻿@page "/Semesters"
+
+<PageTitle>UNI - CMS - Manage Semesters</PageTitle>
+
+<h1>School years and semesters</h1>
+@if (_isModifying)
+{
+    <EditForm Model="@Semester" OnValidSubmit="() => HandleValidSubmit()">
+        <DataAnnotationsValidator/>
+        <label>Leave two fields empty to delete</label>
+        <InputText class="form-control mb-3" @bind-Value="Semester.Year"></InputText>
+        <InputText class="form-control mb-3" @bind-Value="Semester.SemesterNumber"></InputText>
+        <InputDate class="form-control mb-3" @bind-Value="Semester.StartDate"></InputDate>
+        <InputDate class="form-control mb-3" @bind-Value="Semester.EndDate"></InputDate>
+        <button type="submit" class="btn btn-primary mb-3">Modify</button>
+        <ValidationSummary/>
+        @if (_invalidInput)
+        {
+            <div class="alert alert-danger mb-3">
+                Invalid input. Example input: 2021-2022, 1
+            </div>
+        }
+    </EditForm>
+}
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <td>Start date</td>
+            <td>End date</td>
+            <th><button type="button" class="btn btn-success" @onclick="@AddSemester">Add</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < _semestersList.Count; i++)
+        {
+            var j = i;
+
+            <tr>
+                <td>@_semestersList[i][0]</td>
+                <td>@_semestersList[i][1]</td>
+                <td>@_semestersList[i][2]</td>
+                <td>@_semestersList[i][3]</td>
+                <td>
+                    <button type="button" class="btn btn-primary" @onclick="() => ModifyRow(j)">Modify</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

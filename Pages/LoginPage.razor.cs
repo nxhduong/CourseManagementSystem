@@ -2,7 +2,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using System.Security.Cryptography;
+using CourseManagementSystem.Data;
 using System.Text;
 
 namespace CourseManagementSystem.Pages
@@ -13,23 +13,12 @@ namespace CourseManagementSystem.Pages
         private NavigationManager? Navigation { get; set; }
         [Inject]
         private ProtectedSessionStorage? ProtectedSessionStore { get; set; }
-        private readonly MD5 _md5Encryptor = MD5.Create();
         private readonly UserModel _user = new();
         private bool wrongCredentials = false;
 
-        private static string ByteArrayToString(byte[] arrInput)
-        {
-            StringBuilder strOutput = new(arrInput.Length);
-            for (var i = 0; i < arrInput.Length; i++)
-            {
-                strOutput.Append(arrInput[i].ToString("X2"));
-            }
-            return strOutput.ToString();
-        }
-
         public async Task HandleValidSubmit()
         {
-            var hashInput = ByteArrayToString(_md5Encryptor.ComputeHash(Encoding.ASCII.GetBytes(_user.Password))).ToUpper();
+            var hashInput = Crypto.ByteArrayToString(Crypto.MD5Encryptor.ComputeHash(Encoding.ASCII.GetBytes(_user.Password))).ToUpper();
 
             using (var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadOnly"))
             {
@@ -39,8 +28,8 @@ namespace CourseManagementSystem.Pages
                 var username = "";
                 var hashPass = "";
 
-                command.CommandText = "SELECT * FROM Staff WHERE Username = $username";
-                command.Parameters.AddWithValue("$username", _user.Username);
+                command.CommandText = "SELECT * FROM Staff WHERE ID = $username";
+                command.Parameters.AddWithValue("$username", _user.ID);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -65,8 +54,8 @@ namespace CourseManagementSystem.Pages
                 username = "";
                 hashPass = "";
                 command = connection.CreateCommand();
-                command.CommandText = "SELECT StudentID, HashPass FROM Students WHERE StudentID = $username";
-                command.Parameters.AddWithValue("$username", _user.Username);
+                command.CommandText = "SELECT ID, HashPass FROM Students WHERE ID = $username";
+                command.Parameters.AddWithValue("$username", _user.ID);
 
                 using (var reader = command.ExecuteReader())
                 {

@@ -9,7 +9,7 @@
         {
             <div class="card mb-3">
                 <div class="card-body">
-                <h3 class="card-title"><span class="fw-bold">@_user.Username</span>/Staff</h3>
+                <h3 class="card-title"><span class="fw-bold">@_user.ID</span>/Staff</h3>
                 </div>
             </div>
         } 
@@ -18,7 +18,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h3 class="card-title"><span class="fw-bold">@_user.FullName</span>/Student</h3>
-                    <h5 class="card-subtitle text-muted">@_user.Username - Class @_user.Class</h5>
+                    <h5 class="card-subtitle text-muted">@_user.ID - Class @_user.Class</h5>
                 </div>
             </div>
         }
@@ -32,13 +32,19 @@
                 <label for="oldPassword">Old password</label>
             </div>
             <div class="mb-3 form-floating">
-                <InputText type="password" class="form-control" @bind-Value="_passwords.NewPassword" placeholder="New password" required></InputText>
+                <InputText type="password" class="form-control" @bind-Value="_passwords.NewPassword" placeholder="New password"></InputText>
                 <label for="newPassword">New password</label>
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" />
             </div>
             <ValidationSummary />
+            @if (_invalidNewPassword)
+            {
+                <div class="alert alert-danger mb-3">
+                    Password must be more than 6 characters long and must contain numbers and letters
+                </div>
+            }
         </EditForm>
     } 
     else 

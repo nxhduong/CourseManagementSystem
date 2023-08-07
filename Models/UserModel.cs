@@ -5,7 +5,7 @@ namespace CourseManagementSystem.Models
     public class UserModel
     {
         [Required]
-        public string Username { get; set; }
+        public string ID { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

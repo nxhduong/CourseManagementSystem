@@ -13,30 +13,29 @@ namespace CourseManagementSystem.Data
                 connection.Open();
 
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM SchoolYearsAndSemesters";
+                command.CommandText = "SELECT * FROM Semesters";
 
-                using (var reader = command.ExecuteReader())
+                using var reader = command.ExecuteReader();
+
+                DateTime startDate, endDate;
+                CultureInfo local = new("vi-VN");
+
+                while (reader.Read())
                 {
-                    DateTime startDate, endDate;
-                    CultureInfo local = new("vi-VN");
-
-                    while(reader.Read())
+                    try
                     {
-                        try
-                        {
-                            startDate = DateTime.ParseExact(reader.GetString(2), "dd/MM/yyyy", local);
-                            endDate = DateTime.ParseExact(reader.GetString(3), "dd/MM/yyyy", local);
+                        startDate = DateTime.ParseExact(reader.GetString(2), "dd/MM/yyyy", local);
+                        endDate = DateTime.ParseExact(reader.GetString(3), "dd/MM/yyyy", local);
 
-                            if (DateTime.Compare(today, startDate) >= 0 && DateTime.Compare(today, endDate) <= 0)
-                            {
-                                return Task.FromResult($"Current Semester: {reader.GetString(1)} ({reader.GetString(0)})");
-                            }
-                        }
-                        catch (FormatException err)
+                        if (DateTime.Compare(today, startDate) >= 0 && DateTime.Compare(today, endDate) <= 0)
                         {
-                            Console.WriteLine(err);
-                            break;
+                            return Task.FromResult($"Current Semester: {reader.GetString(1)} ({reader.GetString(0)})");
                         }
+                    }
+                    catch (FormatException err)
+                    {
+                        Console.WriteLine(err);
+                        break;
                     }
                 }
             }
