@@ -1,8 +1,8 @@
 ﻿using CourseManagementSystem.Models;
-using Microsoft.Data.Sqlite;
+using CourseManagementSystem.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using CourseManagementSystem.Data;
+using Microsoft.Data.Sqlite;
 using System.Text;
 
 namespace CourseManagementSystem.Pages
@@ -12,72 +12,73 @@ namespace CourseManagementSystem.Pages
         [Inject]
         private NavigationManager? Navigation { get; set; }
         [Inject]
-        private ProtectedSessionStorage? ProtectedSessionStore { get; set; }
+        private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
         private readonly UserModel _user = new();
         private bool wrongCredentials = false;
 
         public async Task HandleValidSubmit()
         {
-            var hashInput = Crypto.ByteArrayToString(Crypto.MD5Encryptor.ComputeHash(Encoding.ASCII.GetBytes(_user.Password))).ToUpper();
+            var hashInput = Encoding.ASCII.GetBytes(_user.Password).ComputeMD5().ByteArrayToString().ToLower();
 
-            using (var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadOnly"))
+            using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadOnly");
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            var username = "";
+            var hashPass = "";
+
+            // Find staff
+            command.CommandText = "SELECT * FROM Staff WHERE ID = $username";
+            command.Parameters.AddWithValue("$username", _user.ID);
+
+            using (var reader = command.ExecuteReader())
             {
-                connection.Open();
-
-                var command = connection.CreateCommand();
-                var username = "";
-                var hashPass = "";
-
-                command.CommandText = "SELECT * FROM Staff WHERE ID = $username";
-                command.Parameters.AddWithValue("$username", _user.ID);
-
-                using (var reader = command.ExecuteReader())
+                reader.Read();
+                if (reader.GetString(0) != null)
                 {
-                    reader.Read();
-                    if (reader.GetString(0) != null)
+                    username = reader.GetString(0);
+                    hashPass = reader.GetString(1);
+
+                    if (hashInput == hashPass)
                     {
-                        username = reader.GetString(0);
-                        hashPass = reader.GetString(1).ToUpper();
+                        _user.IsStaff = true;
+                        wrongCredentials = false;
 
-                        if (hashInput == hashPass)
-                        {
-                            _user.IsStaff = true;
-                            wrongCredentials = false;
-
-                            await ProtectedSessionStore.SetAsync("cms_access_token", _user);
-                            Navigation?.NavigateTo("/", true);
-                            return;
-                        }
-                    }
-                }
-
-                username = "";
-                hashPass = "";
-                command = connection.CreateCommand();
-                command.CommandText = "SELECT ID, HashPass FROM Students WHERE ID = $username";
-                command.Parameters.AddWithValue("$username", _user.ID);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        username = reader.GetString(2);
-                        hashPass = reader.GetString(6).ToUpper();
-
-                        if (hashInput == hashPass)
-                        {
-                            _user.IsStaff = false;
-                            _user.Class = reader.GetString(0);
-                            _user.FullName = reader.GetString(1);
-                            wrongCredentials = false;
-
-                            await ProtectedSessionStore.SetAsync("cms_access_token", _user);
-                            Navigation?.NavigateTo("/", true);
-                            return;
-                        }
+                        await ProtectedSessionStore.SetAsync("cms_access_token", _user);
+                        Navigation?.NavigateTo("/", true);
+                        return;
                     }
                 }
             }
+
+            // Find student
+            username = "";
+            hashPass = "";
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT ID, HashPass FROM Students WHERE ID = $username";
+            command.Parameters.AddWithValue("$username", _user.ID);
+
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    username = reader.GetString(2);
+                    hashPass = reader.GetString(6);
+
+                    if (hashInput == hashPass)
+                    {
+                        _user.IsStaff = false;
+                        _user.Class = reader.GetString(0);
+                        _user.FullName = reader.GetString(1);
+                        wrongCredentials = false;
+
+                        await ProtectedSessionStore.SetAsync("cms_access_token", _user);
+                        Navigation?.NavigateTo("/", true);
+                        return;
+                    }
+                }
+            }
+
             wrongCredentials = true;
             StateHasChanged();
         }

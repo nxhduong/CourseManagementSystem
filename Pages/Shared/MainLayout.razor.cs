@@ -1,4 +1,4 @@
-﻿namespace CourseManagementSystem.Shared
+﻿namespace CourseManagementSystem.Pages.Shared
 {
     public partial class MainLayout
     {

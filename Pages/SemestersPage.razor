@@ -1,8 +1,9 @@
-﻿@page "/Semesters"
+﻿@page "/semesters"
 
 <PageTitle>UNI - CMS - Manage Semesters</PageTitle>
 
 <h1>School years and semesters</h1>
+
 @if (_isModifying)
 {
     <EditForm Model="@Semester" OnValidSubmit="() => HandleValidSubmit()">
@@ -22,6 +23,7 @@
         }
     </EditForm>
 }
+
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>

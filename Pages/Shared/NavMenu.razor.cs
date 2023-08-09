@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
-namespace CourseManagementSystem.Shared
+namespace CourseManagementSystem.Pages.Shared
 {
     public partial class NavMenu
     {

@@ -1,10 +1,7 @@
 using CourseManagementSystem.Models;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Data.Sqlite;
-using System.Linq;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -13,12 +10,12 @@ namespace CourseManagementSystem.Pages
     public partial class SemestersPage
     {
         [Inject]
-        private ProtectedSessionStorage ProtectedSessionStore { get; set; }
+        private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
         [Inject]
         private NavigationManager? Navigation { get; set; }
         private UserModel? _user = null;
-        private SemesterModel Semester { get; set; } = new();
-        private SemesterModel SelectedSemester { get; set; } = new();
+        private readonly SemesterModel Semester = new();
+        private readonly SemesterModel SelectedSemester = new();
         private List<string[]> _semestersList = new();
         private bool _isModifying = false;
         private bool _invalidInput = false;
@@ -26,10 +23,11 @@ namespace CourseManagementSystem.Pages
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            // Authentication
             var sessionResult = await ProtectedSessionStore.GetAsync<UserModel>("cms_access_token");
             _user = sessionResult.Success ? sessionResult.Value : null;
 
-            if (_user is not null)
+            if (_user?.IsStaff == true)
             {
                 StateHasChanged();
 
@@ -39,6 +37,7 @@ namespace CourseManagementSystem.Pages
                     {
                         connection.Open();
 
+                        // Display semesters upon successful authentication
                         var command = connection.CreateCommand();
                         command.CommandText = "SELECT * FROM Semesters";
 
@@ -64,12 +63,14 @@ namespace CourseManagementSystem.Pages
 
         private void AddSemester()
         {
+            // Show modifying semester form
             _newSemester = true;
             _isModifying = true;
         }
 
         private void ModifyRow(int row)
         {
+            // Save selected row data for modifying
             SelectedSemester.Year = _semestersList[row][0];
             SelectedSemester.SemesterNumber = _semestersList[row][1];
             Semester.Year = _semestersList[row][0];
@@ -82,6 +83,13 @@ namespace CourseManagementSystem.Pages
 
         private void HandleValidSubmit()
         {
+            if (_user?.IsStaff != true)
+            {
+                Navigation?.NavigateTo("Login");
+                return;
+            }
+
+            // Delete semester when both fields are empty
             if (String.IsNullOrWhiteSpace(Semester.Year) && String.IsNullOrWhiteSpace(Semester.SemesterNumber) && !_newSemester)
             {
                 using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadWrite");
@@ -101,6 +109,7 @@ namespace CourseManagementSystem.Pages
                     Console.Error.WriteLine("Error updating semester");
                 }
             }
+            // Modify semester
             else if (Regex.IsMatch(Semester.Year.Trim(), @"\d{4}-\d{4}") && Regex.IsMatch(Semester.SemesterNumber.Trim(), @"^\d{1}$"))
             {
                 using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadWrite");
@@ -121,6 +130,16 @@ namespace CourseManagementSystem.Pages
                 } 
                 else
                 {
+                    // Check for duplicates
+                    var duplicates = from row in _semestersList
+                                     where row[0] == Semester.Year.Trim() && row[1] == Semester.SemesterNumber.Trim()
+                                     select row;
+                    if (duplicates.Any())
+                    {
+                        _invalidInput = true;
+                        return;
+                    }
+
                     command.CommandText = "INSERT INTO Semesters VALUES ($year, $semester, $startdate, $enddate)";
                     command.Parameters.AddWithValue("$startdate", Semester.StartDate.ToString("dd/MM/yyyy"));
                     command.Parameters.AddWithValue("$enddate", Semester.EndDate.ToString("dd/MM/yyyy"));

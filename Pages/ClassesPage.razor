@@ -1,0 +1,68 @@
+﻿@page "/classes/{class?}"
+
+<PageTitle>UNI - CMS - Manage Classes and Students</PageTitle>
+
+<h1>Classes and Students</h1>
+<div class="dropdown mb-3">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="classes">Classes</button>
+    <ul class="dropdown-menu" aria-labelledby="classes">
+        @foreach (var eachClass in _classesList) {
+            <li><a class="dropdown-item" href="/Classes/@eachClass">@eachClass</a></li>
+        }
+    </ul>
+</div>
+@if (_invalidInput)
+{
+    <div class="alert alert-danger mb-3">
+        Invalid form input
+    </div>
+}
+<EditForm Model="@_class" OnValidSubmit="@HandleValidClassSubmit">
+    <label>Leave the first field blank to create new class. Leave the second field blank to delete class.</label>
+    <InputText @bind-Value="_class.OldClass" class="form-control mb-3" placeholder="Old class name"></InputText>
+    <InputText @bind-Value="_class.NewClass" class="form-control mb-3" placeholder="New class name"></InputText>
+    <button type="submit" class="btn btn-primary mb-3">Modify</button>
+</EditForm>
+@if (_importStudents)
+{
+    <h3>Import students from CSV file</h3>
+    <label>Upload CSV file (containing in order <strong>Student Name, Student ID, Male (true/false), DOB, Social ID</strong>), max 2 MB</label>
+    <br />
+    <label>Default password for students is: Password@123. <mark>Any duplicates (same Student ID) will be OVERWRITTEN!</mark></label>
+    <InputFile OnChange="@ReadStudentsCSVFile" class="form-control mb-3"></InputFile>
+}
+<table class="table table-striped table-bordered table-hover mb-3">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Student ID</th>
+            <th>Male</th>
+            <th>DOB</th>
+            <th>Social ID</th>
+            @if (Class != null)
+            {
+                <th>
+                    <button type="button" class="btn btn-success" @onclick="() => _importStudents = true">Import students</button>
+                </th>
+            } else
+            {
+                <th>Please select a class</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in _studentsList.Where(studentInfo => studentInfo[0] == Class))
+        {
+            <tr>
+                <td>@student[1]</td>
+                <td>@student[2]</td>
+                <td>@student[3]</td>
+                <td>@student[4]</td>
+                <td>@student[5]</td>
+                <td>
+                    <button type="button" class="btn btn-secondary">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

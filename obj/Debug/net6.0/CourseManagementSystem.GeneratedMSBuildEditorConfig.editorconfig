@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/ClassesPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc1BhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/CoursesPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlc1BhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/HomePage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,21 +40,21 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VtZXN0ZXJzUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/LoginDisplay.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/Desktop/CourseManagementSystem/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-0byc9wpul3
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-pcq0rh0kg2
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-ekhzjx919j
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0h2qbap2ko
 
 [C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s

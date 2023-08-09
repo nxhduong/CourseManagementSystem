@@ -5,10 +5,10 @@ namespace CourseManagementSystem.Models
     public class UserModel
     {
         [Required]
-        public string ID { get; set; }
+        public string ID { get; set; } = default!;
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password { get; set; } = default!;
         [Required]
         public bool IsStaff { get; set; }
         public string Class { get; set; } = "";
