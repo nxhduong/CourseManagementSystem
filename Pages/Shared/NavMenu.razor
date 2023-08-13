@@ -1,9 +1,6 @@
-﻿@using CourseManagementSystem.Models;
-@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-
-<div class="top-row ps-1 navbar navbar-dark">
+﻿<div class="top-row ps-1 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="">UNI / CMS</a>
+        <a class="navbar-brand" href="">CourseManagementSystem</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,17 +16,17 @@
                 </NavLink>
             </div>
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="Semesters">
+                <NavLink class="nav-link" href="semesters">
                     <span class="oi oi-calendar" aria-hidden="true"></span> Semesters
                 </NavLink>
             </div>
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="Classes">
+                <NavLink class="nav-link" href="classes">
                     <span class="oi oi-people" aria-hidden="true"></span> Classes
                 </NavLink>
             </div>
             <div class="nav-item px-3">
-                <NavLink class="nav-link" href="Courses">
+                <NavLink class="nav-link" href="courses">
                     <span class="oi oi-book" aria-hidden="true"></span> Courses
                 </NavLink>
             </div>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Globalization;
 
-namespace CourseManagementSystem.Data
+namespace CourseManagementSystem.Utilities
 {
     public class SchoolTimeService
     {
@@ -33,7 +33,7 @@ namespace CourseManagementSystem.Data
                     }
                     catch (FormatException err)
                     {
-                        Console.WriteLine(err);
+                        Console.Error.WriteLine(err);
                         break;
                     }
                 }

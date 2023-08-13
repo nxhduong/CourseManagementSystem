@@ -14,14 +14,14 @@ namespace CourseManagementSystem.Pages
         private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
         [Inject]
         private NavigationManager? Navigation { get; set; }
-        private UserModel? _user;
+        private PersonModel? _user;
         private readonly PasswordChangeModel _passwords = new();
-        private bool _invalidNewPassword = false;
+        private string _errorMessage = "";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             // Authentication
-            var sessionResult = await ProtectedSessionStore.GetAsync<UserModel>("cms_access_token");
+            var sessionResult = await ProtectedSessionStore.GetAsync<PersonModel>("cms_access_token");
             _user = sessionResult.Success ? sessionResult.Value : null;
             if (_user is not null) StateHasChanged();
         }
@@ -29,10 +29,8 @@ namespace CourseManagementSystem.Pages
         public async Task HandleValidSubmit()
         {
             // Change password
-            if (_passwords.NewPassword?.Length > 6 && Regex.IsMatch(_passwords.NewPassword, @"(\w*\d\w+)|(\w+\d\w*)"))
+            try
             {
-                _invalidNewPassword = false;
-
                 using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadWrite");
 
                 connection.Open();
@@ -45,19 +43,14 @@ namespace CourseManagementSystem.Pages
                 command.Parameters.AddWithValue("$oldhashpass", _passwords.NewPassword);
                 command.Parameters.AddWithValue("$newhashpass", newHashPass);
 
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    await ProtectedSessionStore.DeleteAsync("cms_access_token");
-                    Navigation?.NavigateTo("/Login", true);
-                }
-                else
-                {
-                    Console.Error.WriteLine("Error updating password");
-                }
+                command.ExecuteNonQuery();
+                await ProtectedSessionStore.DeleteAsync("cms_access_token");
+                Navigation?.NavigateTo("/login", true);
             }
-            else
+            catch (SqliteException err)
             {
-                _invalidNewPassword = true;
+                Console.Error.WriteLine(err);
+                _errorMessage = "SQL Exception";
             }
         }
     }

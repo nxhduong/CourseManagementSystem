@@ -1,27 +1,28 @@
 ﻿@page "/semesters"
 
-<PageTitle>UNI - CMS - Manage Semesters</PageTitle>
+<PageTitle>CMS - Manage Semesters</PageTitle>
 
 <h1>School years and semesters</h1>
 
-@if (_isModifying)
-{
-    <EditForm Model="@Semester" OnValidSubmit="() => HandleValidSubmit()">
+<ModalWindow Title="Modify semester" id="modal">
+    <EditForm Model="@Semester" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator/>
-        <label>Leave two fields empty to delete</label>
+        <label>Leave two fields empty to delete. Example input: 2021-2022, 1</label>
         <InputText class="form-control mb-3" @bind-Value="Semester.Year"></InputText>
         <InputText class="form-control mb-3" @bind-Value="Semester.SemesterNumber"></InputText>
         <InputDate class="form-control mb-3" @bind-Value="Semester.StartDate"></InputDate>
         <InputDate class="form-control mb-3" @bind-Value="Semester.EndDate"></InputDate>
-        <button type="submit" class="btn btn-primary mb-3">Modify</button>
+        <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal">Modify</button>
         <ValidationSummary/>
-        @if (_invalidInput)
-        {
-            <div class="alert alert-danger mb-3">
-                Invalid input. Example input: 2021-2022, 1
-            </div>
-        }
-    </EditForm>
+    </EditForm>   
+</ModalWindow>
+
+@if (!String.IsNullOrWhiteSpace(_errorMessage))
+{
+    <div class="alert alert-danger alert-dismissible mb-3">
+        @_errorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
 <table class="table table-striped table-bordered table-hover">
@@ -31,7 +32,7 @@
             <th>Semester</th>
             <td>Start date</td>
             <td>End date</td>
-            <th><button type="button" class="btn btn-success" @onclick="@AddSemester">Add</button></th>
+            <th><button type="button" class="btn btn-success" @onclick="@AddSemester" data-bs-toggle="modal" data-bs-target="#modal">Add</button></th>
         </tr>
     </thead>
     <tbody>
@@ -40,12 +41,12 @@
             var j = i;
 
             <tr>
-                <td>@_semestersList[i][0]</td>
-                <td>@_semestersList[i][1]</td>
-                <td>@_semestersList[i][2]</td>
-                <td>@_semestersList[i][3]</td>
+                <td>@_semestersList[j].Year</td>
+                <td>@_semestersList[j].SemesterNumber</td>
+                <td>@_semestersList[j].StartDate.ToString("dd/MM/yyyy")</td>
+                <td>@_semestersList[j].EndDate.ToString("dd/MM/yyyy")</td>
                 <td>
-                    <button type="button" class="btn btn-primary" @onclick="() => ModifyRow(j)">Modify</button>
+                    <button type="button" class="btn btn-primary" @onclick="() => ModifyRow(j)" data-bs-toggle="modal" data-bs-target="#modal">Modify</button>
                 </td>
             </tr>
         }

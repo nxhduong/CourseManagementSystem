@@ -1,60 +1,60 @@
 ﻿@page "/"
 
-<PageTitle>UNI - CMS - Home</PageTitle>
+<PageTitle>CMS - Home</PageTitle>
 
-<body>
-    @if (_user is not null)
-    {
-        if (_user.IsStaff)
-        {
-            <div class="card mb-3">
-                <div class="card-body">
-                <h3 class="card-title"><span class="fw-bold">@_user.ID</span>/Staff</h3>
-                </div>
-            </div>
-        } 
-        else
-        {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h3 class="card-title"><span class="fw-bold">@_user.FullName</span>/Student</h3>
-                    <h5 class="card-subtitle text-muted">@_user.ID - Class @_user.Class</h5>
-                </div>
-            </div>
-        }
-        <EditForm Model="@_passwords" OnValidSubmit="@HandleValidSubmit">
-            <DataAnnotationsValidator />
-            <div class="mb-3">
-                Change password:
-            </div>
-            <div class="mb-3 form-floating">
-                <InputText type="password" class="form-control" @bind-Value="_passwords.OldPassword" placeholder="Old password"></InputText>
-                <label for="oldPassword">Old password</label>
-            </div>
-            <div class="mb-3 form-floating">
-                <InputText type="password" class="form-control" @bind-Value="_passwords.NewPassword" placeholder="New password"></InputText>
-                <label for="newPassword">New password</label>
-            </div>
-            <div class="mb-3">
-                <input type="submit" class="btn btn-primary" />
-            </div>
-            <ValidationSummary />
-            @if (_invalidNewPassword)
-            {
-                <div class="alert alert-danger mb-3">
-                    Password must be more than 6 characters long and must contain numbers and letters
-                </div>
-            }
-        </EditForm>
-    } 
-    else 
+@if (_user is not null)
+{
+    if (_user.IsStaff)
     {
         <div class="card mb-3">
             <div class="card-body">
-                <h3 class="card-title fw-bold">Welcome to UNI - Course Management System</h3>
-                <hr />
-                <h5 class="card-subtitle">Please sign in to continue</h5>
+            <h3 class="card-title"><span class="fw-bold">@_user.ID</span>/Staff</h3>
+            </div>
+        </div>
+    } 
+    else
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title"><span class="fw-bold">@_user.FullName</span>/Student</h3>
+                <h5 class="card-subtitle text-muted">@_user.ID - Class @_user.Class</h5>
             </div>
         </div>
     }
-</body>
+    <EditForm Model="@_passwords" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <label>Password must be 6-25 characters long and must contain numbers and letters.</label>
+        <div class="mb-3">
+            Change password:
+        </div>
+        <div class="mb-3 form-floating">
+            <InputText type="password" class="form-control" @bind-Value="_passwords.OldPassword" placeholder="Old password"></InputText>
+            <label for="oldPassword">Old password</label>
+        </div>
+        <div class="mb-3 form-floating">
+            <InputText type="password" class="form-control" @bind-Value="_passwords.NewPassword" placeholder="New password"></InputText>
+            <label for="newPassword">New password</label>
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+        <ValidationSummary />
+        @if (!String.IsNullOrWhiteSpace(_errorMessage))
+        {
+            <div class="alert alert-danger mb-3">
+                @_errorMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    </EditForm>
+} 
+else 
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h3 class="card-title fw-bold">Welcome to Course Management System</h3>
+            <hr />
+            <h5 class="card-subtitle">Please sign in to continue</h5>
+        </div>
+    </div>
+}

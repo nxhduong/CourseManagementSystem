@@ -13,8 +13,8 @@ namespace CourseManagementSystem.Pages
         private NavigationManager? Navigation { get; set; }
         [Inject]
         private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
-        private readonly UserModel _user = new();
-        private bool wrongCredentials = false;
+        private readonly PersonModel _user = new();
+        private bool _invalidCredentials = false;
 
         public async Task HandleValidSubmit()
         {
@@ -34,7 +34,7 @@ namespace CourseManagementSystem.Pages
             using (var reader = command.ExecuteReader())
             {
                 reader.Read();
-                if (reader.GetString(0) != null)
+                if (reader.GetString(0) is not null)
                 {
                     username = reader.GetString(0);
                     hashPass = reader.GetString(1);
@@ -42,7 +42,7 @@ namespace CourseManagementSystem.Pages
                     if (hashInput == hashPass)
                     {
                         _user.IsStaff = true;
-                        wrongCredentials = false;
+                        _invalidCredentials = false;
 
                         await ProtectedSessionStore.SetAsync("cms_access_token", _user);
                         Navigation?.NavigateTo("/", true);
@@ -70,7 +70,7 @@ namespace CourseManagementSystem.Pages
                         _user.IsStaff = false;
                         _user.Class = reader.GetString(0);
                         _user.FullName = reader.GetString(1);
-                        wrongCredentials = false;
+                        _invalidCredentials = false;
 
                         await ProtectedSessionStore.SetAsync("cms_access_token", _user);
                         Navigation?.NavigateTo("/", true);
@@ -79,7 +79,7 @@ namespace CourseManagementSystem.Pages
                 }
             }
 
-            wrongCredentials = true;
+            _invalidCredentials = true;
             StateHasChanged();
         }
     }

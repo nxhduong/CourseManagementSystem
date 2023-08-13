@@ -1,6 +1,6 @@
 ﻿@page "/classes/{class?}"
 
-<PageTitle>UNI - CMS - Manage Classes and Students</PageTitle>
+<PageTitle>CMS - Manage Classes and Students</PageTitle>
 
 <h1>Classes and Students</h1>
 <div class="dropdown mb-3">
@@ -11,26 +11,61 @@
         }
     </ul>
 </div>
-@if (_invalidInput)
+
+@if (!String.IsNullOrWhiteSpace(_errorMessage))
 {
-    <div class="alert alert-danger mb-3">
-        Invalid form input
+    <div class="alert alert-danger alert-dismissible mb-3">
+        @_errorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
+
+@if (_duplicates?.Any() == false)
+{
+    <div class="alert alert-danger mb-3">
+        The following student(s) are ignored because they have the same ID(s) with existing student(s):
+        <ul>
+            @foreach (var studentID in _studentsList)
+            {
+                <li>@studentID</li>
+            }
+        </ul>
+    </div>
+}
+
 <EditForm Model="@_class" OnValidSubmit="@HandleValidClassSubmit">
     <label>Leave the first field blank to create new class. Leave the second field blank to delete class.</label>
     <InputText @bind-Value="_class.OldClass" class="form-control mb-3" placeholder="Old class name"></InputText>
     <InputText @bind-Value="_class.NewClass" class="form-control mb-3" placeholder="New class name"></InputText>
     <button type="submit" class="btn btn-primary mb-3">Modify</button>
 </EditForm>
+
 @if (_importStudents)
 {
     <h3>Import students from CSV file</h3>
     <label>Upload CSV file (containing in order <strong>Student Name, Student ID, Male (true/false), DOB, Social ID</strong>), max 2 MB</label>
     <br />
-    <label>Default password for students is: Password@123. <mark>Any duplicates (same Student ID) will be OVERWRITTEN!</mark></label>
-    <InputFile OnChange="@ReadStudentsCSVFile" class="form-control mb-3"></InputFile>
+    <label>Default password for students is: Password@123.</label>
+    <InputFile OnChange="@ImportStudentsFromCSVFile" class="form-control mb-3"></InputFile>
+} 
+@if (_selectedStudent is not null)
+{
+    <h3>Modify student</h3>
+    <EditForm Model="@_selectedStudent" OnValidSubmit="@HandleValidStudentSubmit">
+        <DataAnnotationsValidator/>
+        <InputText @bind-Value="_selectedStudent.Class" class="form-control mb-3" placeholder="Class" required />
+        <InputText @bind-Value="_selectedStudent.ID" class="form-control mb-3" placeholder="Student ID" required />
+        <InputText @bind-Value="_selectedStudent.FullName" class="form-control mb-3" placeholder="Full Name" required />
+        <InputText @bind-Value="_selectedStudent.DOB" class="form-control mb-3" placeholder="DOB" required />
+        <InputText @bind-Value="_selectedStudent.SocialID" class="form-control mb-3" placeholder="Social ID" required />
+        <label for="resetpassword">Reset password</label>
+        <InputCheckbox @bind-Value="_resetPassword" name="resetpassword" class="form-control mb-3"/>
+        <button type="submit" class="btn btn-primary mb-3">Modify</button>
+        <button type="button" class="btn btn-danger mb-3" @onclick="() => { _deleteStudent = true; HandleValidStudentSubmit(); }">Delete</button>
+        <ValidationSummary/>
+    </EditForm>
 }
+
 <table class="table table-striped table-bordered table-hover mb-3">
     <thead>
         <tr>
@@ -39,7 +74,7 @@
             <th>Male</th>
             <th>DOB</th>
             <th>Social ID</th>
-            @if (Class != null)
+            @if (Class is not null)
             {
                 <th>
                     <button type="button" class="btn btn-success" @onclick="() => _importStudents = true">Import students</button>
@@ -60,7 +95,7 @@
                 <td>@student[4]</td>
                 <td>@student[5]</td>
                 <td>
-                    <button type="button" class="btn btn-secondary">Delete</button>
+                    <button type="button" class="btn btn-secondary" @onclick="() => ModifyStudent(student)">Modify/Delete</button>
                 </td>
             </tr>
         }
