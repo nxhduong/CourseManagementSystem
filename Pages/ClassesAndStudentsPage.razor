@@ -40,17 +40,14 @@
     <button type="submit" class="btn btn-primary mb-3">Modify</button>
 </EditForm>
 
-@if (_importStudents)
-{
-    <h3>Import students from CSV file</h3>
+<ModalWindow Title="Import students from CSV file" id="import_students_modal">
     <label>Upload CSV file (containing in order <strong>Student Name, Student ID, Male (true/false), DOB, Social ID</strong>), max 2 MB</label>
     <br />
     <label>Default password for students is: Password@123.</label>
     <InputFile OnChange="@ImportStudentsFromCSVFile" class="form-control mb-3"></InputFile>
-} 
-@if (_selectedStudent is not null)
-{
-    <h3>Modify student</h3>
+</ModalWindow>
+
+<ModalWindow Title="Modify student" id="modify_students_modal">
     <EditForm Model="@_selectedStudent" OnValidSubmit="@HandleValidStudentSubmit">
         <DataAnnotationsValidator/>
         <InputText @bind-Value="_selectedStudent.Class" class="form-control mb-3" placeholder="Class" required />
@@ -58,13 +55,13 @@
         <InputText @bind-Value="_selectedStudent.FullName" class="form-control mb-3" placeholder="Full Name" required />
         <InputText @bind-Value="_selectedStudent.DOB" class="form-control mb-3" placeholder="DOB" required />
         <InputText @bind-Value="_selectedStudent.SocialID" class="form-control mb-3" placeholder="Social ID" required />
-        <label for="resetpassword">Reset password</label>
-        <InputCheckbox @bind-Value="_resetPassword" name="resetpassword" class="form-control mb-3"/>
-        <button type="submit" class="btn btn-primary mb-3">Modify</button>
-        <button type="button" class="btn btn-danger mb-3" @onclick="() => { _deleteStudent = true; HandleValidStudentSubmit(); }">Delete</button>
+        <label for="reset_password">Reset password</label>
+        <InputCheckbox @bind-Value="_resetPassword" name="reset_password" class="mb-3"/>
+        <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal">Modify</button>
+        <button type="button" class="btn btn-danger mb-3" @onclick="() => { _deleteStudent = true; HandleValidStudentSubmit(); }" data-bs-dismiss="modal">Delete</button>
         <ValidationSummary/>
     </EditForm>
-}
+</ModalWindow>
 
 <table class="table table-striped table-bordered table-hover mb-3">
     <thead>
@@ -77,7 +74,7 @@
             @if (Class is not null)
             {
                 <th>
-                    <button type="button" class="btn btn-success" @onclick="() => _importStudents = true">Import students</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#import_students_modal">Import students</button>
                 </th>
             } else
             {
@@ -95,7 +92,7 @@
                 <td>@student[4]</td>
                 <td>@student[5]</td>
                 <td>
-                    <button type="button" class="btn btn-secondary" @onclick="() => ModifyStudent(student)">Modify/Delete</button>
+                    <button type="button" class="btn btn-secondary" @onclick="() => ModifyStudent(student)" data-bs-toggle="modal" data-bs-target="#modify_students_modal">Modify/Delete</button>
                 </td>
             </tr>
         }

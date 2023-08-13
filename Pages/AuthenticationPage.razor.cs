@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CourseManagementSystem.Pages
 {
-    public partial class LoginPage
+    public partial class AuthenticationPage
     {
         [Inject]
         private NavigationManager? Navigation { get; set; }

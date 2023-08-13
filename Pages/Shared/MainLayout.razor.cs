@@ -9,7 +9,7 @@
         {
             _currentSchoolYearAndSemester = await SchoolTime.GetCurrentSemester(DateTime.Now);
             StateHasChanged();
-            StartClock();
+            _ = StartClock();
         }
 
         protected async Task StartClock()

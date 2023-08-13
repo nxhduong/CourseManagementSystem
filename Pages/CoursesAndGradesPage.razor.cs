@@ -2,7 +2,7 @@
 
 namespace CourseManagementSystem.Pages
 {
-    public partial class CoursesPage
+    public partial class CoursesAndGradesPage
     {
         [Parameter]
         public string? Course { get; set; }

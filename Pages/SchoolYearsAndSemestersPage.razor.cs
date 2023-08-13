@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace CourseManagementSystem.Pages
 {
-    public partial class SemestersPage
+    public partial class SchoolYearsAndSemestersPage
     {
         [Inject]
         private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
