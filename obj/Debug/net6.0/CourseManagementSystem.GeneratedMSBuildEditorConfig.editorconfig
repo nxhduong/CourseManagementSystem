@@ -20,24 +20,24 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/AuthenticationPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25QYWdlLnJhem9y
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Authentication/AuthenticationPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aGVudGljYXRpb25cQXV0aGVudGljYXRpb25QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/ClassesAndStudentsPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc0FuZFN0dWRlbnRzUGFnZS5yYXpvcg==
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/ClassesAndStudents/ClassesAndStudentsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xhc3Nlc0FuZFN0dWRlbnRzXENsYXNzZXNBbmRTdHVkZW50c1BhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/CoursesAndGradesPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlc0FuZEdyYWRlc1BhZ2UucmF6b3I=
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/CoursesAndGrades/CoursesAndGradesPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlc0FuZEdyYWRlc1xDb3Vyc2VzQW5kR3JhZGVzUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/HomePage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Home/HomePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVxIb21lUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/SchoolYearsAndSemestersPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sWWVhcnNBbmRTZW1lc3RlcnNQYWdlLnJhem9y
+[C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/SchoolYearsAndSemesters/SchoolYearsAndSemestersPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2Nob29sWWVhcnNBbmRTZW1lc3RlcnNcU2Nob29sWWVhcnNBbmRTZW1lc3RlcnNQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/Desktop/CourseManagementSystem/Pages/Shared/ModalWindow.razor]

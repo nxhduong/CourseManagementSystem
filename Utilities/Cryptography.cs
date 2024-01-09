@@ -7,7 +7,7 @@ namespace CourseManagementSystem.Utilities
     {
         private static readonly MD5 MD5Encryptor = MD5.Create();
 
-        public static string ByteArrayToString(this byte[] arrInput)
+        public static string FromByteArrayToString(this byte[] arrInput)
         {
             StringBuilder strOutput = new(arrInput.Length);
             for (var i = 0; i < arrInput.Length; i++)
