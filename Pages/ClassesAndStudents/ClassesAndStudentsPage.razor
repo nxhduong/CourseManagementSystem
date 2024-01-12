@@ -25,15 +25,15 @@
     <div class="alert alert-danger mb-3">
         The following student(s) are ignored because they have the same ID(s) with existing student(s):
         <ul>
-            @foreach (var studentID in _studentsList)
+            @foreach (var studentId in _studentsList)
             {
-                <li>@studentID</li>
+                <li>@studentId</li>
             }
         </ul>
     </div>
 }
 
-<EditForm Model="@_class" OnValidSubmit="@HandleValidClassSubmit">
+<EditForm Model="@_class" OnValidSubmit="@ModifyClass">
     <label>Leave the first field blank to create new class. Leave the second field blank to delete class.</label>
     <InputText @bind-Value="_class.OldClass" class="form-control mb-3" placeholder="Old class name"></InputText>
     <InputText @bind-Value="_class.NewClass" class="form-control mb-3" placeholder="New class name"></InputText>
@@ -48,17 +48,17 @@
 </ModalWindow>
 
 <ModalWindow Title="Modify student" id="modify_students_modal">
-    <EditForm Model="@_selectedStudent" OnValidSubmit="@HandleValidStudentSubmit">
+    <EditForm Model="@_selectedStudent" OnValidSubmit="@ModifyStudent">
         <DataAnnotationsValidator/>
         <InputText @bind-Value="_selectedStudent.Class" class="form-control mb-3" placeholder="Class" required />
-        <InputText @bind-Value="_selectedStudent.ID" class="form-control mb-3" placeholder="Student ID" required />
+        <InputText @bind-Value="_selectedStudent.Id" class="form-control mb-3" placeholder="Student ID" required />
         <InputText @bind-Value="_selectedStudent.FullName" class="form-control mb-3" placeholder="Full Name" required />
         <InputText @bind-Value="_selectedStudent.DOB" class="form-control mb-3" placeholder="DOB" required />
-        <InputText @bind-Value="_selectedStudent.SocialID" class="form-control mb-3" placeholder="Social ID" required />
+        <InputText @bind-Value="_selectedStudent.SocialId" class="form-control mb-3" placeholder="Social ID" required />
         <label for="reset_password">Reset password</label>
         <InputCheckbox @bind-Value="_resetPassword" name="reset_password" class="mb-3"/>
         <button type="submit" class="btn btn-primary mb-3" data-bs-dismiss="modal">Modify</button>
-        <button type="button" class="btn btn-danger mb-3" @onclick="() => { _deleteStudent = true; HandleValidStudentSubmit(); }" data-bs-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-danger mb-3" @onclick="() => { _deleteStudent = true; ModifyStudent(); }" data-bs-dismiss="modal">Delete</button>
         <ValidationSummary/>
     </EditForm>
 </ModalWindow>
@@ -92,7 +92,7 @@
                 <td>@student[4]</td>
                 <td>@student[5]</td>
                 <td>
-                    <button type="button" class="btn btn-secondary" @onclick="() => ModifyStudent(student)" data-bs-toggle="modal" data-bs-target="#modify_students_modal">Modify/Delete</button>
+                    <button type="button" class="btn btn-secondary" @onclick="() => SelectStudentForModification(student)" data-bs-toggle="modal" data-bs-target="#modify_students_modal">Modify/Delete</button>
                 </td>
             </tr>
         }

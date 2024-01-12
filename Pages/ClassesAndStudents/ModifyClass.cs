@@ -5,7 +5,7 @@ namespace CourseManagementSystem.Pages.ClassesAndStudents
 {
     public partial class ClassesAndStudentsPage : ComponentBase
     {
-        private void HandleValidClassSubmit()
+        private void ModifyClass()
         {
             var classFound = _classesList.Contains(_class.NewClass ?? "");
 
@@ -14,19 +14,19 @@ namespace CourseManagementSystem.Pages.ClassesAndStudents
             var command = connection.CreateCommand();
 
             // Create class
-            if (String.IsNullOrWhiteSpace(_class.OldClass) && !String.IsNullOrWhiteSpace(_class.NewClass) && !classFound)
+            if (string.IsNullOrWhiteSpace(_class.OldClass) && !string.IsNullOrWhiteSpace(_class.NewClass) && !classFound)
             {
                 command.CommandText = "INSERT INTO Classes VALUES ($class)";
                 command.Parameters.AddWithValue("$class", _class.NewClass);
             }
             // Delete class
-            else if (!String.IsNullOrWhiteSpace(_class.OldClass) && String.IsNullOrWhiteSpace(_class.NewClass) && classFound)
+            else if (!string.IsNullOrWhiteSpace(_class.OldClass) && string.IsNullOrWhiteSpace(_class.NewClass) && classFound)
             {
                 command.CommandText = "DELETE FROM Classes WHERE Class = $class";
                 command.Parameters.AddWithValue("$class", _class.OldClass);
             }
             // Rename class
-            else if (!String.IsNullOrWhiteSpace(_class.OldClass) && !String.IsNullOrWhiteSpace(_class.NewClass) && classFound)
+            else if (!string.IsNullOrWhiteSpace(_class.OldClass) && !string.IsNullOrWhiteSpace(_class.NewClass) && classFound)
             {
                 command.CommandText = "UPDATE Classes SET Classes = $newclass WHERE Classes = $oldclass";
                 command.Parameters.AddWithValue("$oldclass", _class.OldClass);

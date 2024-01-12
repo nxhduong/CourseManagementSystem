@@ -6,9 +6,9 @@ namespace CourseManagementSystem.Pages.Authentication
 {
     public partial class AuthenticationPage
     {
-        public async Task HandleValidSubmit()
+        public async Task PerformLogin()
         {
-            var hashInput = Encoding.ASCII.GetBytes(_user.Password).ComputeMD5().FromByteArrayToString().ToLower();
+            var hashInput = Crypto.ConvertByteArrayToString(Encoding.ASCII.GetBytes(_user.Password).ComputeMD5()).ToLower();
 
             using var connection = new SqliteConnection("Data Source=Data/CMS_DATABASE.db;Mode=ReadOnly");
             connection.Open();
@@ -19,7 +19,7 @@ namespace CourseManagementSystem.Pages.Authentication
 
             // Find staff
             command.CommandText = "SELECT * FROM Staff WHERE ID = $username";
-            command.Parameters.AddWithValue("$username", _user.ID);
+            command.Parameters.AddWithValue("$username", _user.Id);
 
             using (var reader = command.ExecuteReader())
             {
@@ -34,7 +34,7 @@ namespace CourseManagementSystem.Pages.Authentication
                         _user.IsStaff = true;
                         _invalidCredentials = false;
 
-                        await ProtectedSessionStore.SetAsync("cms_access_token", _user);
+                        await SessionStorage.SetAsync("cms_access_token", _user);
                         Navigation?.NavigateTo("/", true);
                         return;
                     }
@@ -46,7 +46,7 @@ namespace CourseManagementSystem.Pages.Authentication
             hashPass = "";
             command = connection.CreateCommand();
             command.CommandText = "SELECT ID, HashPass FROM Students WHERE ID = $username";
-            command.Parameters.AddWithValue("$username", _user.ID);
+            command.Parameters.AddWithValue("$username", _user.Id);
 
             using (var reader = command.ExecuteReader())
             {
@@ -62,7 +62,7 @@ namespace CourseManagementSystem.Pages.Authentication
                         _user.FullName = reader.GetString(1);
                         _invalidCredentials = false;
 
-                        await ProtectedSessionStore.SetAsync("cms_access_token", _user);
+                        await SessionStorage.SetAsync("cms_access_token", _user);
                         Navigation?.NavigateTo("/", true);
                         return;
                     }

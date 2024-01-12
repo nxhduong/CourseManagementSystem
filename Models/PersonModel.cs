@@ -5,7 +5,7 @@ namespace CourseManagementSystem.Models
     public class PersonModel
     {
         [Required]
-        public string ID { get; set; } = default!;
+        public string Id { get; set; } = default!;
         [Required]
         [DataType(DataType.Password)]
         [RegularExpression(@"(\w*\d\w+)|(\w+\d\w*)")]
@@ -18,6 +18,6 @@ namespace CourseManagementSystem.Models
         public string? Male;
         [RegularExpression(@"\d{2}\/\d{2}\/\d{4}")]
         public string? DOB;
-        public string? SocialID;
+        public string? SocialId;
     }
 }

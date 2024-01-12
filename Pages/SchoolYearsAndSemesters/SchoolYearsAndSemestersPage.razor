@@ -5,7 +5,7 @@
 <h1>School years and semesters</h1>
 
 <ModalWindow Title="Modify semester" id="modal">
-    <EditForm Model="@Semester" OnValidSubmit="HandleValidSubmit">
+    <EditForm Model="@Semester" OnValidSubmit="ModifySemester">
         <DataAnnotationsValidator/>
         <label>Leave two fields empty to delete. Example input: 2021-2022, 1</label>
         <InputText class="form-control mb-3" @bind-Value="Semester.Year"></InputText>
@@ -32,7 +32,7 @@
             <th>Semester</th>
             <td>Start date</td>
             <td>End date</td>
-            <th><button type="button" class="btn btn-success" @onclick="@AddSemester" data-bs-toggle="modal" data-bs-target="#modal">Add</button></th>
+            <th><button type="button" class="btn btn-success" @onclick="() => _newSemester = true" data-bs-toggle="modal" data-bs-target="#modal">Add</button></th>
         </tr>
     </thead>
     <tbody>
@@ -46,7 +46,7 @@
                 <td>@_semestersList[j].StartDate.ToString("dd/MM/yyyy")</td>
                 <td>@_semestersList[j].EndDate.ToString("dd/MM/yyyy")</td>
                 <td>
-                    <button type="button" class="btn btn-primary" @onclick="() => ModifyRow(j)" data-bs-toggle="modal" data-bs-target="#modal">Modify</button>
+                    <button type="button" class="btn btn-primary" @onclick="() => SelectRowForModification(j)" data-bs-toggle="modal" data-bs-target="#modal">Modify</button>
                 </td>
             </tr>
         }

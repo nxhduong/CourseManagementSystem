@@ -2,12 +2,12 @@
 
 <PageTitle>CMS - Sign in</PageTitle>
 
-<EditForm Model="@_user" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@_user" OnValidSubmit="@PerformLogin">
     <DataAnnotationsValidator />
     <p>
         <label>
             Username:
-            <InputText class="form-control" @bind-Value="_user.ID"></InputText>
+            <InputText class="form-control" @bind-Value="_user.Id"></InputText>
         </label>
     </p>
     <p>

@@ -12,6 +12,11 @@ This project can be customized to suit various needs.
   - View their own scores
 ## Usage
 *Please refer to the [Documentation](/Documentation.md) for more information.*
+## ** This project is currently a WIP **
+Todo:
+- Implement courses and grades management
+- Finish implementation of students management
+- Finish documentation
 ## Contributing to this project
 Any contributions are greatly appreciated. 
 Should you have any suggestions, please fork this repo and create a pull request, or simply open an issue with the tag "improvement".

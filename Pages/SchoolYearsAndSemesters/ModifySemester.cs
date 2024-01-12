@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.Sqlite;
-using System.Text.RegularExpressions;
 
 namespace CourseManagementSystem.Pages.SchoolYearsAndSemesters
 {
     public partial class SchoolYearsAndSemestersPage
     {
-        private void HandleValidSubmit()
+        private void ModifySemester()
         {
             if (_user?.IsStaff != true)
             {
@@ -14,7 +13,7 @@ namespace CourseManagementSystem.Pages.SchoolYearsAndSemesters
             }
 
             // Delete semester when both fields are empty
-            if (String.IsNullOrWhiteSpace(Semester.Year) && String.IsNullOrWhiteSpace(Semester.SemesterNumber) && !_newSemester)
+            if (string.IsNullOrWhiteSpace(Semester.Year) && string.IsNullOrWhiteSpace(Semester.SemesterNumber) && !_newSemester)
             {
                 try
                 {
@@ -36,7 +35,7 @@ namespace CourseManagementSystem.Pages.SchoolYearsAndSemesters
                 }
             }
             // Modify semester
-            else if (Regex.IsMatch(Semester.Year.Trim(), @"\d{4}-\d{4}") && Regex.IsMatch(Semester.SemesterNumber.Trim(), @"^\d{1}$"))
+            else if (s_yearRangeRegex().IsMatch(Semester.Year.Trim()) && s_semesterRegex().IsMatch(Semester.SemesterNumber.Trim()))
             {
                 try
                 {

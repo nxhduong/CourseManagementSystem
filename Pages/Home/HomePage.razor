@@ -8,7 +8,7 @@
     {
         <div class="card mb-3">
             <div class="card-body">
-            <h3 class="card-title"><span class="fw-bold">@_user.ID</span>/Staff</h3>
+            <h3 class="card-title"><span class="fw-bold">@_user.Id</span>/Staff</h3>
             </div>
         </div>
     } 
@@ -17,11 +17,11 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h3 class="card-title"><span class="fw-bold">@_user.FullName</span>/Student</h3>
-                <h5 class="card-subtitle text-muted">@_user.ID - Class @_user.Class</h5>
+                <h5 class="card-subtitle text-muted">@_user.Id - Class @_user.Class</h5>
             </div>
         </div>
     }
-    <EditForm Model="@_passwords" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@_passwords" OnValidSubmit="@PerformPasswordChange">
         <DataAnnotationsValidator />
         <label>Password must be 6-25 characters long and must contain numbers and letters.</label>
         <div class="mb-3">

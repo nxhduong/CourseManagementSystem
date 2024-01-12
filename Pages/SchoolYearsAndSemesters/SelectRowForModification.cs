@@ -2,7 +2,7 @@
 {
     public partial class SchoolYearsAndSemestersPage
     {
-        private void ModifyRow(int row)
+        private void SelectRowForModification(int row)
         {
             // Save selected row data for modifying
             SelectedSemester.Year = _semestersList[row].Year;

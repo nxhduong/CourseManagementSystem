@@ -3,18 +3,18 @@ using System.Security.Cryptography;
 
 namespace CourseManagementSystem.Utilities
 {
-    public static class Cryptography
+    public static class Crypto
     {
         private static readonly MD5 MD5Encryptor = MD5.Create();
 
-        public static string FromByteArrayToString(this byte[] arrInput)
+        public static string ConvertByteArrayToString(byte[] inputByteArray)
         {
-            StringBuilder strOutput = new(arrInput.Length);
-            for (var i = 0; i < arrInput.Length; i++)
+            StringBuilder outputString = new(inputByteArray.Length);
+            for (var i = 0; i < inputByteArray.Length; i++)
             {
-                strOutput.Append(arrInput[i].ToString("X2"));
+                outputString.Append(inputByteArray[i].ToString("X2"));
             }
-            return strOutput.ToString();
+            return outputString.ToString();
         }
 
         public static byte[] ComputeMD5(this byte[] buffer)

@@ -9,7 +9,7 @@ namespace CourseManagementSystem.Pages.Authentication
         [Inject]
         private NavigationManager? Navigation { get; set; }
         [Inject]
-        private ProtectedSessionStorage ProtectedSessionStore { get; set; } = default!;
+        private ProtectedSessionStorage SessionStorage { get; set; } = default!;
         private readonly PersonModel _user = new();
         private bool _invalidCredentials = false;
     }
